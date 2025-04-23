@@ -13,8 +13,15 @@ function MovieList({
 
   return (
     <div className="movie-list">
-      {movies.map(movie => (
-        <MovieCard key={movie.id} movie={movie} />
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          isFavorite={favorites.includes(movie.id)}
+          onToggleFavorite={onToggleFavorite}
+          onAddReview={onAddReview}
+          onUpdateLikes={onUpdateLikes}
+        />
       ))}
     </div>
   );
