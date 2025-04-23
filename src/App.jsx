@@ -1,4 +1,8 @@
 import { useState } from 'react'
+
+
+
+
 import AddMovie from "./AddMovie";
 
 import './App.css'
@@ -24,8 +28,10 @@ function App() {
     
   }
 
+
   
   return (
+
     <div className="app">
       <div className="controls">
         {/*trigger button*/}
@@ -37,6 +43,7 @@ function App() {
       {showAddForm && <AddMovie onAddMovie={addMovie} />}
     </div>
   );
+
 }
 
 export default App
