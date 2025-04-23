@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 function MovieCard({
   movie,
   isFavorite,
@@ -62,3 +63,4 @@ function MovieCard({
 }
 
 export default MovieCard;
+
