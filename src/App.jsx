@@ -1,35 +1,42 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import AddMovie from "./AddMovie";
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState([]);//enables adding state to funcional component
 
+   
+  function addMovie(newMovie) {
+    fetch("http://localhost:3000/movies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newMovie),
+    })
+      .then(function (response) {
+        return response.json(); //reads the body content ( movie data from db.json).
+      })
+      .then(function (data) {
+        setMovies([...movies, data]);
+      });//creates new array containing existing movies and appends new movie data at the end
+    
+  }
+
+  
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="app">
+      <div className="controls">
+        {/*trigger button*/}
+        <button onClick={() => setShowAddForm(!showAddForm)}>
+          {showAddForm ? "Hide Form" : "Add Movie"}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      {/*it only appears when button is clicked*/}
+      {showAddForm && <AddMovie onAddMovie={addMovie} />}
+    </div>
+  );
 }
 
 export default App
