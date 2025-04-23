@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import AddMovie from "./AddMovie";
+import AddMovie from './components/AddMovie'
 
 import './App.css'
 
