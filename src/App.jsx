@@ -8,7 +8,7 @@ function App() {
 
    
   function addMovie(newMovie) {
-    fetch("http://localhost:3001/movies", {
+    fetch("http://localhost:3000/movies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,10 +26,17 @@ function App() {
 
   
   return (
-    <>
-      
-    </>
-  )
+    <div className="app">
+      <div className="controls">
+        {/*trigger button*/}
+        <button onClick={() => setShowAddForm(!showAddForm)}>
+          {showAddForm ? "Hide Form" : "Add Movie"}
+        </button>
+      </div>
+      {/*it only appears when button is clicked*/}
+      {showAddForm && <AddMovie onAddMovie={addMovie} />}
+    </div>
+  );
 }
 
 export default App
