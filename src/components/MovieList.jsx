@@ -1,3 +1,4 @@
+
 import React from 'react';
 import MovieCard from './MovieCard';
 
@@ -28,3 +29,4 @@ function MovieList({
 }
 
 export default MovieList;
+
