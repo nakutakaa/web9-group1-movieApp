@@ -21,6 +21,7 @@ function App() {
       .then(function (data) {
         setMovies([...movies, data]);
       });//creates new array containing existing movies and appends new movie data at the end
+    
   }
 
   
