@@ -1,50 +1,35 @@
-import { useState,useEffect } from 'react'
-import AddMovie from './components/AddMovie'
-import MovieList from './components/MovieList'
+import { useState, useEffect } from "react";
+import AddMovie from "./components/AddMovie";
+import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
 import Favorites from "./components/Favorites";
 import "./App.css";
 import Navbar from "./components/Navbar";
 
+function App({ showOnlyFavorites = false }) {
+  const [movies, setMovies] = useState([]); // For movie list
+  const [showAddForm, setShowAddForm] = useState(false); // To toggle add form visibility
+  const [searchTerm, setSearchTerm] = useState(""); // Search term to filter movies
+  const [favorites, setFavorites] = useState([]); // Store list of favorite movie ids
 
-function App() {
-  const [movies, setMovies] = useState([]); //enables adding state to funcional component
-  const [showAddForm, setShowAddForm] = useState(false); // State variable to control the visibility of the add form (true = visible, false = hidden)
-  const [showFavorites, setShowFavorites] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [favorites, setFavorites] = useState([]);
+  useEffect(() => {
+    // Fetch movies from the API (db.json)
+    fetch("http://localhost:3000/movies")
+      .then((response) => response.json())
+      .then((data) => setMovies(data));
 
-useEffect(() => {
-  // Fetch movies
-  fetch("http://localhost:3000/movies")
-    .then((response) => response.json())
-    .then((data) => setMovies(data));
+    // Fetch favorite movie ids from the API
+    fetch("http://localhost:3000/favorites")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Fetched favourites:", data) || // Log the data to check its structure
+          setFavorites(data.map((f) => f.id)); // extract just the IDs
+      });
+  }, []);
 
-  // Fetch favorites
-  fetch("http://localhost:3000/favorites")
-    .then((response) => response.json())
-    .then((data) => setFavorites(data));
-}, []);
-
-const filteredMovies = movies.filter((movie) =>
-  movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-);
-
-  function addMovie(newMovie) {
-    fetch("http://localhost:3000/movies", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newMovie),
-    })
-      .then(function (response) {
-        return response.json(); //reads the body content ( movie data from db.json).
-      })
-      .then(function (data) {
-        setMovies([...movies, data]);
-      }); //creates new array containing existing movies and appends new movie data at the end
-  };
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const addReview = (movieId, review) => {
     const movieToUpdate = movies.find((movie) => movie.id === movieId);
@@ -86,50 +71,49 @@ const filteredMovies = movies.filter((movie) =>
     });
   };
 
-  const toggleFavorite = (movieId) => {
-    let updatedFavorites;
-    if (favorites.includes(movieId)) {
-      updatedFavorites = favorites.filter((id) => id !== movieId);
-    } else {
-      updatedFavorites = [...favorites, movieId];
-    }
+const toggleFavorite = (movieId) => {
+  const isFavorite = favorites.includes(movieId);
+  let updatedFavorites;
 
-    // Update favorites in db.json
+  if (isFavorite) {
+    updatedFavorites = favorites.filter((id) => id !== movieId);
+    fetch(`http://localhost:3000/favorites/${movieId}`, {
+      method: "DELETE",
+    }).then(() => setFavorites(updatedFavorites));
+  } else {
+    updatedFavorites = [...favorites, movieId];
     fetch("http://localhost:3000/favorites", {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedFavorites),
+      body: JSON.stringify({ id: movieId }),
     }).then(() => setFavorites(updatedFavorites));
-  };
+  }
+};
 
-
-  
 
   return (
     <div className="app">
-      <Navbar/>
+      <Navbar />
       <h1>Movie Discovery App</h1>
-      
+
       <div className="controls">
         <SearchBar setSearchTerm={setSearchTerm} />
-        {/*trigger button*/}
         <button onClick={() => setShowAddForm(!showAddForm)}>
           {showAddForm ? "Hide Form" : "Add Movie"}
         </button>
-        <button onClick={() => setShowFavorites(!showFavorites)}>
-          {showFavorites ? "Show All" : "Show Favorites"}
-        </button>
       </div>
-      {/*it only appears when button is clicked*/}
+
+      {/* Add movie form visibility */}
       {showAddForm && <AddMovie onAddMovie={addMovie} />}
 
-      {showFavorites ? (
+      {/* Show Favorite Movies */}
+      {showOnlyFavorites ? (
         <Favorites
-          movies={movies.filter((movie) => favorites.includes(movie.id))}
-          onToggleFavorite={toggleFavorite}
+          movies={movies}
           favorites={favorites}
+          onToggleFavorite={toggleFavorite}
           onAddReview={addReview}
           onUpdateLikes={updateLikes}
         />
@@ -141,8 +125,7 @@ const filteredMovies = movies.filter((movie) =>
           onAddReview={addReview}
           onUpdateLikes={updateLikes}
         />
-        )}
-        
+      )}
     </div>
   );
 }
