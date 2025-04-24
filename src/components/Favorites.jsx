@@ -1,19 +1,22 @@
 import MovieList from "./MovieList";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
+
 function Favorites({
-  movies,
+  movies = [], // default to empty array
+  favorites = [], // default to empty array
   onToggleFavorite,
-  favorites,
   onAddReview,
   onUpdateLikes,
 }) {
+  const favoriteMovies = movies.filter((movie) => favorites.includes(movie.id));
+
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar /> */}
       <h2>Your Favorite Movies</h2>
-      {movies.length > 0 ? (
+      {favoriteMovies.length > 0 ? (
         <MovieList
-          movies={movies}
+          movies={favoriteMovies}
           onToggleFavorite={onToggleFavorite}
           favorites={favorites}
           onAddReview={onAddReview}
@@ -25,4 +28,5 @@ function Favorites({
     </div>
   );
 }
+
 export default Favorites;

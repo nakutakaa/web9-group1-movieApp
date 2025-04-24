@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot,ReactDOM } from 'react-dom/client'
+import { createRoot} from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter, createBrowserRouter,RouterProvider } from 'react-router-dom';
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   // },
   {
     path: '/favourites',
-    element:<Favorites/>
+    element:<App showOnlyFavorites={true}/>
   }
 ]);
 
