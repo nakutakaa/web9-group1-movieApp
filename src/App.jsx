@@ -4,6 +4,8 @@ import MovieList from './components/MovieList'
 import SearchBar from "./components/SearchBar";
 import Favorites from "./components/Favorites";
 import "./App.css";
+import Navbar from "./components/Navbar";
+
 
 function App() {
   const [movies, setMovies] = useState([]); //enables adding state to funcional component
@@ -107,6 +109,7 @@ const filteredMovies = movies.filter((movie) =>
 
   return (
     <div className="app">
+      <Navbar/>
       <h1>Movie Discovery App</h1>
       
       <div className="controls">
@@ -138,7 +141,8 @@ const filteredMovies = movies.filter((movie) =>
           onAddReview={addReview}
           onUpdateLikes={updateLikes}
         />
-      )}
+        )}
+        
     </div>
   );
 }

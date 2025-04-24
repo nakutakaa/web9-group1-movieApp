@@ -1,4 +1,5 @@
 import MovieList from "./MovieList";
+import Navbar from "./Navbar";
 function Favorites({
   movies,
   onToggleFavorite,
@@ -8,6 +9,7 @@ function Favorites({
 }) {
   return (
     <div>
+      <Navbar/>
       <h2>Your Favorite Movies</h2>
       {movies.length > 0 ? (
         <MovieList
