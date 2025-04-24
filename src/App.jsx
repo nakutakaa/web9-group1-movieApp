@@ -27,6 +27,20 @@ function App({ showOnlyFavorites = false }) {
       });
   }, []);
 
+  const addMovie = (newMovie) => {
+    fetch('http:localhost:3000/movies', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newMovie),
+    })
+      .then((res) => res.json())
+      .then((savedMovie) => {
+        setMovies([...movies, savedMovie]);
+      });
+  }
+
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
