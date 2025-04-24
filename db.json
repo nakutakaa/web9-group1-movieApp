@@ -2,31 +2,38 @@
   "movies": [
     {
       "id": "1afe",
-      "image": "https://upload.wikimedia.org/wikipedia/en/3/34/Cars_2006.jpg",
-      "title": "Cars",
-      "description": "An animated movie about talking cars",
+      "image": "https://c4.wallpaperflare.com/wallpaper/129/788/47/ragnar-lodbrok-digital-art-vikings-sword-wallpaper-preview.jpg",
+      "title": "Vikings",
+      "description": "Vladimir, a Viking prince, goes into exile after his father's demise and the treacherous actions of his half-brother, Yaropolk. A warrior convinces Vladimir to face his brother and retake Novgorod.",
       "origin": "USA",
-      "reviews": [],
+      "reviews": [
+        "One of my all-time favorites.  Kirk Douglas in his action-packed prime simply oozes charisma, while the three-sided romance between he, Tony Curtis and Janet Leigh just begs each viewer to pick his own favorite (“two horns on the head of the same goat”).\nThe musical score perfectly complements the interaction between these far deeper than would be expected characters in a mere action adventure tale.  Wonderful cinematography caps off a film which works magnificently from all angles."
+      ],
       "likes": 0,
       "dislikes": 0
     },
     {
       "id": "2bge",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg",
-      "title": "Toy Story",
-      "description": "Toys come to life when humans aren't looking",
+      "image": "https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/05/the-matrix-code-keanu-reeves.jpeg",
+      "title": "The Matrix",
+      "description": "Neo, a computer programmer and hacker, has always questioned the reality of the world around him. His suspicions are confirmed when Morpheus, a rebel leader, contacts him and reveals the truth to him.",
       "origin": "USA",
-      "reviews": [],
+      "reviews": [
+        "a great movie that is ahead of its time, just the thought of how people are amazed by this movie on the year it was released amuses me. People back then were probably shocked and in awe of the concept that back then was pretty much hard to grasp. 20 years later i think the audience will still be amazed just as how it amazed me, even though there have been dozens of films that basically had the same plot and executed a much greater CGI effect."
+      ],
       "likes": 0,
       "dislikes": 0
     },
     {
       "id": "mox0uygya",
       "title": "Fast and Furious",
-      "image": "https://play-lh.googleusercontent.com/OWfr4HF6X3--BaiqIBMy_-FcIgnib7k6LXw3ULKjxmmf302eSgZgDf9meeVFfGxnfqQbNw",
+      "image": "https://www.telegraph.co.uk/content/dam/films/2017/03/27/fastfuriousmain_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.gif?impolicy=Twitter-Standard",
       "description": "Fast & Furious, also known as The Fast and the Furious, is an American action media franchise centered on a series of films revolving around street racing, heists, and spies. The franchise also includes short films, a television series, toys, video games, live shows, and theme park attractions.",
       "origin": "USA",
-      "reviews": ["hii movie iko sawa majamaa"],
+      "reviews": [
+        "hii movie iko sawa majamaa",
+        "After \"Fast And Furious 3\" disapointed at the Box Office Universal Studios brought back original Franchise star's Vin Diesel and Paul Walker for \"Part 4\", and the rest is history. The two star's re-team to solve the murder of Dom's Girlfriend and team member Letti, and bring down a Drug Lord. Packed with tension and high octane stunts this was a massive Box Office hit and set the bar for the rest of the film's to follow."
+      ],
       "likes": 0,
       "dislikes": 0
     },
@@ -36,10 +43,38 @@
       "image": "https://m.media-amazon.com/images/M/MV5BOGFlMDQ5NGItN2UwNi00ODhmLTg2ZjgtMTg3NmQwMjg2MDQzXkEyXkFqcGdeQTNwaW5nZXN0._V1_QL75_UX500_CR0,0,500,281_.jpg",
       "description": "After a fierce warrior rescues a teenage boy who has a bounty on his head, they venture to cross a treacherous land to find enlightenment.\n",
       "origin": "USA",
-      "reviews": [],
+      "reviews": [
+        "This show was the best supernatural show I have ever come accross and why it had to end is sad!?This show is suppose to be recognized at the highest levels in every aspect for it's creativity, combat choreography, suspense, story line and absolutely everything that i dont know about movie making."
+      ],
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": "gg1mhmfp3",
+      "title": "it",
+      "image": "https://static01.nyt.com/images/2017/10/29/arts/29HORROR-BOXOFFICE1/29HORROR-BOXOFFICE1-superJumbo.jpg",
+      "description": "Locked inside a store on Halloween night, three middle school friends encounter an angry spirit that possesses creepy animatronic characters.",
+      "origin": "kenya",
+      "reviews": [
+        "I thought it was great I think Jaeden Martell did a great job at playing a leader while also showing that he was definitely not the most confident person. Being honest I think all of the characters played there roles great and in some parts the CGI was so good along with acting that the first time I watched I literally dreaded the moment."
+      ],
       "likes": 0,
       "dislikes": 0
     }
   ],
-  "favorites": []
+  "favorites": [
+    {
+      "0": "0ngdv424u"
+      
+    },
+    {
+      "0": {
+        "0": "0ngdv424u",
+        "id": "0736"
+      },
+      "1": "1afe",
+      "id": "76e2"
+    }
+    
+  ]
 }
