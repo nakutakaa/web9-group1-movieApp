@@ -1,6 +1,7 @@
 import { useState } from "react";
 // AddMovie Component that handles the form for adding new movies with admin password protection
 function AddMovie({ onAddMovie }) {
+  //Receives onAddMovie from parent
   //form data state with initial empty values
   const [formData, setFormData] = useState({
     title: "",
@@ -50,6 +51,8 @@ function AddMovie({ onAddMovie }) {
     setPassword(""); // Clear password field
     setError(""); // Clear any previous errors
   };
+
+  
   return (
     <form onSubmit={handleSubmit} className="add-movie-form">
       <h2>Add New Movie</h2>
