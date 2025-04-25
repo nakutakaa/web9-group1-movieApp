@@ -71,3 +71,8 @@ button:hover {
 .favorite {
   background-color: rgba(248, 133, 2, 0.726);
 }
+.nav .active {
+  font-weight: bold;
+  color: #4CAF50;
+  text-decoration: underline;
+}

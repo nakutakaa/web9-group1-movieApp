@@ -56,29 +56,59 @@
       "description": "Locked inside a store on Halloween night, three middle school friends encounter an angry spirit that possesses creepy animatronic characters.",
       "origin": "kenya",
       "reviews": [
-        "I thought it was great I think Jaeden Martell did a great job at playing a leader while also showing that he was definitely not the most confident person. Being honest I think all of the characters played there roles great and in some parts the CGI was so good along with acting that the first time I watched I literally dreaded the moment."
+        "I thought it was great I think Jaeden Martell did a great job at playing a leader while also showing that he was definitely not the most confident person. Being honest I think all of the characters played there roles great and in some parts the CGI was so good along with acting that the first time I watched I literally dreaded the moment.",
+        "cool"
       ],
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": "f23dvsln8",
+      "title": "night agent",
+      "image": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRSLQqa9pG_JFUZJovFtEmtG2ik8DJBtoPcpcAaGgvC1ilvb6kV",
+      "description": "While monitoring an emergency line, an FBI agent answers a call that plunges him into a deadly conspiracy involving a mole at the White House.",
+      "origin": "kakamega",
+      "reviews": [],
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": "aowkab6l0",
+      "title": "ffgghhjjjj",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuPzAOB6d0BxKBBN7Kr5fCEwML4vGslJXX2w&s",
+      "description": "jabbgfdfjccfyjtjmgcj",
+      "origin": "githurai",
+      "reviews": [],
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": "4gd1p6z6q",
+      "title": "bad cop",
+      "image": "https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/8196/1718883338196-i",
+      "description": "Bad Cop is Hindi-language crime thriller television series written by Rensil D'Silva and Rehan Khan and directed by Aditya Datt. It stars Anurag Kashyap, Gulshan Devaiah, Harleen Sethi, Saurabh Sachdeva, Anupam K. Sinha, Subham Sharma, Shatrughan Kumar, and Aishwarya ",
+      "origin": "India",
+      "reviews": [],
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": "br46ej4sz",
+      "title": "ip man",
+      "image": "https://www.pluggedin.com/wp-content/uploads/2020/07/Ip-Man-4-WP.jpg",
+      "description": "In 1930s China, a martial artist loses his home after the Imperial Japanese Army invades the country. With little means to survive, he must find a way to sustain his family.",
+      "origin": "China",
+      "reviews": [],
       "likes": 0,
       "dislikes": 0
     }
   ],
   "favorites": [
     {
-      "0": "0ngdv424u"
-    },
-    {
-      "0": {
-        "0": "0ngdv424u",
-        "id": "0736"
-      },
-      "1": "1afe",
-      "id": "76e2"
-    },
-    {
       "id": "1afe"
     },
     {
-      "id": "2bge"
+      "id": "gg1mhmfp3"
     }
   ]
 }

@@ -1,21 +1,34 @@
 import React from "react"; 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-export default function Navbar(){
+export default function Navbar() {
+  const location = useLocation();
     return (
-      <>
-        <div className="nav"></div>
+      
+      <div className="nav">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/movies">Movies</Link>
+            <Link
+              to="/non-favorites"
+              className={location.pathname === "/movies" ? "active" : ""}
+            >
+              Non-favorites
+            </Link>
           </li>
           <li>
-            <Link to="/favourites">Favourites</Link>
+            <Link
+              to="/favourites"
+              className={location.pathname === "/favourites" ? "active" : ""}
+            >
+              Favourites
+            </Link>
           </li>
         </ul>
-      </>
+      </div>
     );
 }
