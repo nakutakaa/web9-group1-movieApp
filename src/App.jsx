@@ -1,30 +1,25 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddMovie from "./components/AddMovie";
 import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
 import Favorites from "./components/Favorites";
-import "./App.css";
 import Navbar from "./components/Navbar";
+import "./App.css";
 
-function App({ showOnlyFavorites = false }) {
-  const [movies, setMovies] = useState([]); // For movie list
-  const [showAddForm, setShowAddForm] = useState(false); // To toggle add form visibility
-  const [searchTerm, setSearchTerm] = useState(""); // Search term to filter movies
-  const [favorites, setFavorites] = useState([]); // Store list of favorite movie ids
+function App() {
+  const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    // Fetch movies from the API (db.json)
     fetch("http://localhost:3000/movies")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => setMovies(data));
 
-    // Fetch favorite movie ids from the API
     fetch("http://localhost:3000/favorites")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Fetched favourites:", data) || // Log the data to check its structure
-          setFavorites(data.map((f) => f.id)); // extract just the IDs
-      });
+      .then((res) => res.json())
+      .then((data) => setFavorites(data.map((f) => f.id)));
   }, []);
 
   const addMovie = (newMovie) => {
@@ -44,6 +39,20 @@ function App({ showOnlyFavorites = false }) {
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const addMovie = (newMovie) => {
+    fetch("http://localhost:3000/movies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newMovie),
+    })
+      .then((res) => res.json())
+      .then((addedMovie) => {
+        setMovies([...movies, addedMovie]);
+      });
+  };
 
   const addReview = (movieId, review) => {
     const movieToUpdate = movies.find((movie) => movie.id === movieId);
@@ -85,62 +94,65 @@ function App({ showOnlyFavorites = false }) {
     });
   };
 
-const toggleFavorite = (movieId) => {
-  const isFavorite = favorites.includes(movieId);
-  let updatedFavorites;
+  const toggleFavorite = (movieId) => {
+    const isFavorite = favorites.includes(movieId);
+    let updatedFavorites;
 
-  if (isFavorite) {
-    updatedFavorites = favorites.filter((id) => id !== movieId);
-    fetch(`http://localhost:3000/favorites/${movieId}`, {
-      method: "DELETE",
-    }).then(() => setFavorites(updatedFavorites));
-  } else {
-    updatedFavorites = [...favorites, movieId];
-    fetch("http://localhost:3000/favorites", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: movieId }),
-    }).then(() => setFavorites(updatedFavorites));
-  }
-};
-
+    if (isFavorite) {
+      updatedFavorites = favorites.filter((id) => id !== movieId);
+      fetch(`http://localhost:3000/favorites/${movieId}`, {
+        method: "DELETE",
+      }).then(() => setFavorites(updatedFavorites));
+    } else {
+      updatedFavorites = [...favorites, movieId];
+      fetch("http://localhost:3000/favorites", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: movieId }),
+      }).then(() => setFavorites(updatedFavorites));
+    }
+  };
 
   return (
-    <div className="app">
-      <Navbar />
-      <h1>Movie Discovery App</h1>
+    <Router>
+      <div className="app">
+        <Navbar />
+        <h1>Movie Discovery App</h1>
+        <div className="controls">
+          <SearchBar setSearchTerm={setSearchTerm} />
+        </div>
 
-      <div className="controls">
-        <SearchBar setSearchTerm={setSearchTerm} />
-        <button onClick={() => setShowAddForm(!showAddForm)}>
-          {showAddForm ? "Hide Form" : "Add Movie"}
-        </button>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MovieList
+                movies={filteredMovies}
+                onToggleFavorite={toggleFavorite}
+                favorites={favorites}
+                onAddReview={addReview}
+                onUpdateLikes={updateLikes}
+              />
+            }
+          />
+          <Route
+            path="/favourites"
+            element={
+              <Favorites
+                movies={movies}
+                favorites={favorites}
+                onToggleFavorite={toggleFavorite}
+                onAddReview={addReview}
+                onUpdateLikes={updateLikes}
+              />
+            }
+          />
+          <Route path="/add" element={<AddMovie onAddMovie={addMovie} />} />
+        </Routes>
       </div>
-
-      {/* Add movie form visibility */}
-      {showAddForm && <AddMovie onAddMovie={addMovie} />}
-
-      {/* Show Favorite Movies */}
-      {showOnlyFavorites ? (
-        <Favorites
-          movies={movies}
-          favorites={favorites}
-          onToggleFavorite={toggleFavorite}
-          onAddReview={addReview}
-          onUpdateLikes={updateLikes}
-        />
-      ) : (
-        <MovieList
-          movies={filteredMovies}
-          onToggleFavorite={toggleFavorite}
-          favorites={favorites}
-          onAddReview={addReview}
-          onUpdateLikes={updateLikes}
-        />
-      )}
-    </div>
+    </Router>
   );
 }
 
