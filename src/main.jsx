@@ -13,15 +13,14 @@ import ErrorPage from './components/ErrorPage'; //  error page component
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Home  />,
     errorElement: <ErrorPage />, //  error handling for all routes
   },
   {
-  path: "/non-favorites",  // More descriptive than "/movies"
-  element: <App showOnlyFavorites={false} showOnlyNonFavorites={true} />,
-   },
+    path: "/non-favorites", // More descriptive than "/movies"
+    element: <App showOnlyFavorites={false} showOnlyNonFavorites={true} />,
+  },
 
-  
   {
     path: "/favourites",
     element: <App showOnlyFavorites={true} />, // Shows only favorites

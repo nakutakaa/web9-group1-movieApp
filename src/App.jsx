@@ -5,6 +5,7 @@ import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
 import Favorites from "./components/Favorites";
 import Navbar from "./components/Navbar";
+import "./App.css";
 
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
@@ -60,35 +61,20 @@ function App({ showOnlyFavorites = false, showOnlyNonFavorites = false }) {
   };
   // In App.jsx
   const filteredMovies = movies.filter((movie) => {
-    if (showOnlyFavorites) return favorites.includes(movie.id);
-    if (showOnlyNonFavorites) return !favorites.includes(movie.id);
-    return true; // Show all if neither flag is set
+    const isFavorite = favorites.includes(movie.id);
+    const matchesSearch = movie.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    if (showOnlyFavorites) return isFavorite && matchesSearch;
+    if (showOnlyNonFavorites) return !isFavorite && matchesSearch;
+    return matchesSearch;
+
+    
   });
-  // const filteredMovies = movies.filter(
-  //   (movie) =>
-  //     showOnlyFavorites
-  //       ? favorites.includes(movie.id) // If showing favorites
-  //       : !favorites.includes(movie.id) // If showing NON-favorites
-  // );
+  
 
-  // const filteredMovies = movies.filter((movie) =>
-  //   movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 
-  const addMovie = (newMovie) => {
-    fetch("http://localhost:3000/movies", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newMovie),
-    })
-      .then((res) => res.json())
-      .then((addedMovie) => {
-        setMovies([...movies, addedMovie]);
-      });
-  };
-
+  
   const addReview = (movieId, review) => {
     const movieToUpdate = movies.find((movie) => movie.id === movieId);
     const updatedMovie = {
