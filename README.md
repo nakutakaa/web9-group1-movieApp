@@ -1,12 +1,93 @@
-# React + Vite
+# 🎬 MK Movie Site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek and dynamic React-based movie discovery platform that allows users to explore, search, review, like, and favorite movies. Built with a focus on functionality and modern web design principles.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 **Search Movies** – Instantly filter movies by title.
+- 💬 **Add Reviews** – Users can add reviews to each movie.
+- ❤️ **Like / Dislike Movies** – Show your opinion with like/dislike buttons.
+- 🌟 **Favorite Movies** – Save movies to your favorites for quick access.
+- ➕ **Add New Movies** – Easily add new movies using a dynamic form.
+- 🧭 **Routing** – Seamless navigation using React Router.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React, JSX, CSS
+- **Routing:** React Router DOM
+- **State Management:** React `useState`, `useEffect`
+- **Backend (Mock):** JSON Server (simulates API)
+- **HTTP Requests:** Fetch API
+
+## 📂 Project Structure
+
+```
+MK-movie-site/
+│
+├── components/           # Reusable UI Components
+│   ├── AddMovie.js
+│   ├── Favorites.js
+│   ├── MovieList.js
+│   ├── Navbar.js
+│   └── SearchBar.js
+│
+├── App.js                # Main app logic with routing and state
+├── App.css               # Custom styles
+├── db.json               # JSON Server data
+├── index.js              # ReactDOM entry
+└── README.md             # Project documentation
+```
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/nakutakaa/MK-movie-site.git
+cd MK-movie-site
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Run JSON Server (for mock backend)
+
+Ensure `json-server` is installed globally or locally:
+
+```bash
+npm install -g json-server
+```
+
+Then run:
+
+```bash
+json-server --watch db.json --port 3000
+```
+
+### 4. Start the React App
+
+In a separate terminal:
+
+```bash
+npm start
+```
+
+App will be available at `http://localhost:5173` (or your Vite default port).
+
+## 📸 Screenshots
+
+*Coming soon...*
+
+## 🧠 Future Enhancements
+
+- 🎥 Movie trailer support
+- 🎨 Dark/light mode toggle
+- 👤 User authentication & login
+- 📱 Responsive design improvements
+
+
+
+
