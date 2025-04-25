@@ -72,7 +72,7 @@ json-server --watch db.json --port 3000
 In a separate terminal:
 
 ```bash
-npm start
+npm run dev
 ```
 
 App will be available at `http://localhost:5173` (or your Vite default port).
