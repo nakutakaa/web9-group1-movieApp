@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddMovie from "./components/AddMovie";
 import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
 import Favorites from "./components/Favorites";
-import "./App.css";
 import Navbar from "./components/Navbar";
+
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,20 +19,21 @@ function App({ showOnlyFavorites = false, showOnlyNonFavorites = false }) {
   const [searchTerm, setSearchTerm] = useState(""); // Search term to filter movies
   const [favorites, setFavorites] = useState([]); // Store list of favorite movie ids
 
+
+
   //DATA FETCHING
   useEffect(() => {
+
     // Fetch movies from the API (db.json)=>Uses useEffect hook for side effects (data loading)
     fetch("http://localhost:3000/movies")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => setMovies(data));
 
-    // Fetch favorite movie ids from the API()
+
+    // Fetch favorite movie ids from the API
     fetch("http://localhost:3000/favorites")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Fetched favourites:", data) || // Log the data to check its structure
-          setFavorites(data.map((f) => f.id)); // extract just the IDs
-      });
+      .then((res) => res.json())
+      .then((data) => setFavorites(data.map((f) => f.id)));
   }, []);
 
   //CRUD OPERATIONS:
@@ -72,6 +74,20 @@ function App({ showOnlyFavorites = false, showOnlyNonFavorites = false }) {
   // const filteredMovies = movies.filter((movie) =>
   //   movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   // );
+
+  const addMovie = (newMovie) => {
+    fetch("http://localhost:3000/movies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newMovie),
+    })
+      .then((res) => res.json())
+      .then((addedMovie) => {
+        setMovies([...movies, addedMovie]);
+      });
+  };
 
   const addReview = (movieId, review) => {
     const movieToUpdate = movies.find((movie) => movie.id === movieId);
@@ -159,6 +175,7 @@ function App({ showOnlyFavorites = false, showOnlyNonFavorites = false }) {
     }
   };
 
+
   //ROUTING & COMPOSITION:
   return (
     <div className="app">
@@ -197,6 +214,7 @@ function App({ showOnlyFavorites = false, showOnlyNonFavorites = false }) {
       {/* Notification container */}
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
+
   );
 }
 
